@@ -1,9 +1,13 @@
 // State ko extend htar tet htel mar ray tar ko emphameral state lo khaw
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
-import 'package:state_management/Provider/count_provider.dart';
-import 'package:state_management/Provider/my_home_page_provider.dart';
+import 'package:state_management/BLOC/bloc/user_bloc.dart';
+import 'package:state_management/BLOC/my_home_bloc_page.dart';
+import 'package:state_management/PROVIDER/count_provider.dart';
+import 'package:state_management/PROVIDER/my_home_provider_page.dart';
+import 'package:state_management/PROVIDER/user_provider.dart';
 import 'package:state_management/my_home_page.dart';
 
 void main() {
@@ -16,25 +20,35 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: 'Flutter Demo',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
-        home:
-            // ChangeNotifierProvider(
-            //   create: (context) {
-            //     return CountProvider();
-            //   },
-            //   child: MyHomePageProvider(title: 'Flutter Demo Home Page'),
-            // )
-            // Or
-            ChangeNotifierProvider(
-          create: (context) => CountProvider(), // short hand
-          
-          child: MyHomePageProvider(title: 'Flutter Demo Home Page'),
-        )
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home:
 
-        // const MyHomePageProvider(title: 'Flutter Demo Home Page'), // For SetState
-        );
+          // ------------------------------------ //Bloc Start
+          //   BlocProvider(
+          // create: (context) => UserBloc(),
+          // child: const MyHomeBlocPage(title: 'Flutter Demo Home Page'),),
+
+          // ------------------------------------------------------- // Bloc End
+
+          //-------------------------------------- // Provider start
+
+          //   MultiProvider(
+          // providers: [
+          //   ChangeNotifierProvider(create: (context) => CountProvider()),
+          //   ChangeNotifierProvider(create: (context) => UserProvider())
+          // ], // For Multi Provider
+
+          //   ChangeNotifierProvider(
+          // create: (context) => CountProvider(), //  For Single provider
+
+          // child: const MyHomeProviderPage(title: 'Flutter Demo Home Page'),)
+
+          //---------------------------------------------------- // Provider End
+
+          const MyHomePage(title: 'Flutter Demo Home Page'), // For SetState
+    );
   }
 }
